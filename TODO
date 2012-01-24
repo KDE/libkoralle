@@ -1,0 +1,7 @@
+streamreaders should be embeddable, to enable direct decoding into target objects:
+class AbstractChunkStreamReader
+
+subclass of QIODevice as proxy, to ensure chunkstreamreader does not read outside of
+chunk
+
+additionally read chunk to passed bytearrays, instead of creating own QByteArray

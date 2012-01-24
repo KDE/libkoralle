@@ -1,0 +1,12 @@
+libkoralle is a lib for parsing (and hopefully soon also writing) data
+in Resource Interchange File Format (RIFF) based formats.
+
+Documentation about RIFF:
+http://en.wikipedia.org/wiki/Resource_Interchange_File_Format
+
+Known users:
+Import filter for Karbon (WIP, contact kossebau@kde.org)
+
+Authors:
+Friedrich W. H. Kossebau <kossebau@kde.org>
+soon you?

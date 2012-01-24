@@ -1,0 +1,10 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=@CMAKE_INSTALL_PREFIX@
+libdir=@CMAKE_INSTALL_PREFIX@/lib@LIB_SUFFIX@
+includedir=@CMAKE_INSTALL_PREFIX@/include/@koralle_LIB_NAME@
+
+Name: libkoralle
+Description: lib for parsing data in the Resource Interchange File Format (RIFF)
+Version: @koralle_LIB_VERSION@
+Libs: -L${libdir} -l@koralle_LIB_NAME@
+Cflags: -I${includedir}
