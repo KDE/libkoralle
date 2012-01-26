@@ -99,7 +99,7 @@ RiffStreamReaderPrivate::readChunkHeader()
         if( chunkSize & 1 )
             chunkSize += 1;
         // adapt to use content
-        if( mIsCurrentChunkFile || mIsCurrentChunkList )
+        if( mIsCurrentChunkList )
             chunkSize -= sizeof(FourCharCode);
 
         mCurrentChunkOffset += chunkSize;
@@ -146,10 +146,10 @@ RiffStreamReaderPrivate::readChunkHeader()
         mCurrentChunkOffset += sizeof(ChunkHeader);
 
         // check if list
-        mIsCurrentChunkList = ( mCurrentChunkHeader.mId == listId );
         mIsCurrentChunkFile = ( mCurrentChunkHeader.mId == riffId );
+        mIsCurrentChunkList = ( mCurrentChunkHeader.mId == listId ) || mIsCurrentChunkFile;
 
-        if( mIsCurrentChunkFile || mIsCurrentChunkList )
+        if( mIsCurrentChunkList )
         {
             // read list/file id
             const int dataRead = mDevice->read( mCurrentChunkHeader.mId.data(), sizeof(FourCharCode) );
@@ -230,7 +230,7 @@ RiffStreamReaderPrivate::openList()
 
 // TODO: handle read of complete riff/list chunk read before
     if( mHasError ||
-        (! (mIsCurrentChunkFile || mIsCurrentChunkList)) )
+        (! mIsCurrentChunkList) )
         return false;
 
     const quint32 listEndOffset =
