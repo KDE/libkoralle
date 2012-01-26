@@ -1,0 +1,13 @@
+Begin4
+Title:          
+Version:        0.1.0
+Entered-date:   2012-01-26
+Description:    libkoralle is a lib for parsing (and hopefully soon also writing) data
+in formats based on the Resource Interchange File Format (RIFF)
+Keywords:       RIFF parser reader
+Author:         kossebau@kde.org (Friedrich W. H. Kossebau)
+Maintained-by:  kossebau@kde.org (Friedrich W. H. Kossebau)
+Primary-site:   ftp://ftp.kde.org/pub/kde/stable/libkoralle
+Platforms:      
+Copying-policy: GPL
+End

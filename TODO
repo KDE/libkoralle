@@ -5,3 +5,5 @@ subclass of QIODevice as proxy, to ensure chunkstreamreader does not read outsid
 chunk
 
 additionally read chunk to passed bytearrays, instead of creating own QByteArray
+
+Support RIFX, IFF, AIFF?
