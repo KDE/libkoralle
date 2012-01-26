@@ -39,7 +39,43 @@ namespace Koralle
 class RiffStreamReaderPrivate;
 struct FourCharCode;
 
-
+/**
+ * How to use RiffStreamReader:
+ * Given a format based on RIFF with a structure like this:
+ * RIFF id='XMPL'
+ *   'VRSN'
+ *   LIST id='DATT'
+ *     'DATA'
+ *     'DATA'
+ * your code would, assuming the stream is well-formatted, be like this:
+ * @code
+ * #include <Koralle0/RiffStreamReader>
+ * ...
+ * Koralle0::RiffStreamReader reader(device);
+ * reader.readNextChunkHeader();
+ * // reader.chunkId(): Koralle0::FourCharCode('X','M','P','L')
+ * // reader.isFileChunk(): true
+ * // reader.isListChunk(): true
+ * reader.openList(); // needs matching closeList();
+ *   reader.readNextChunkHeader();
+ *   // reader.chunkId(): Koralle0::FourCharCode('V','R','S','N')
+ *   // reader.isFileChunk()/isListChunk(): false
+ *   // reader.chunkData()/chunkSize(): data of the content
+ *   reader.readNextChunkHeader();
+ *   // reader.chunkId(): Koralle0::FourCharCode('D','A','T','T')
+ *   // reader.isFileChunk(): false
+ *   // reader.isListChunk(): true
+ *   reader.openList();
+ *   while(reader.readNextChunkHeader())
+ *   {
+ *     // reader.chunkId(): Koralle0::FourCharCode('D','A','T','A')
+ *     // reader.isFileChunk()/isListChunk(): false
+ *     // reader.chunkData()/chunkSize(): data of the content
+ *   }
+ *   reader.closeList();
+ * reader.closeList();
+ * @endcode
+ */
 class KORALLE_EXPORT RiffStreamReader
 {
 public:
